@@ -11,9 +11,11 @@ root = tk.Tk()
 root.title("Link QR Code Generator")
 root.geometry("400x300")
 
-# Folder to save QR codes
-QR_FOLDER = Path(r"Downloads")
-QR_FOLDER.mkdir(exist_ok=True)
+# Get the user's Downloads folder dynamically
+DOWNLOADS_FOLDER = Path(os.path.join(os.path.expanduser("~"), "Downloads"))
+
+# Ensure the folder exists
+DOWNLOADS_FOLDER.mkdir(exist_ok=True)
 
 # Function to open a custom input dialog
 def custom_input_dialog():
@@ -54,10 +56,10 @@ def generate_qr():
             messagebox.showwarning("Warning", "File name cannot be empty!")
             return
         random_suffix = generate_random_string()
-        qr_filename = QR_FOLDER / f"{file_name}_{random_suffix}.jpg"
+        qr_filename = DOWNLOADS_FOLDER / f"{file_name}_{random_suffix}.jpg"
         qr.save(qr_filename)
         messagebox.showinfo("Success", f"QR Code saved at: {qr_filename}")
-        os.startfile(QR_FOLDER)
+        os.startfile(DOWNLOADS_FOLDER)
 
 # UI Elements
 label = tk.Label(root, text="Enter a link to generate a QR Code:")
