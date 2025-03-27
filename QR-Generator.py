@@ -12,7 +12,7 @@ root.title("Link QR Code Generator")
 root.geometry("400x300")
 
 # Folder to save QR codes
-QR_FOLDER = Path(r"C:/Users/russe/OneDrive/Documents/QR-CODES")
+QR_FOLDER = Path(r"Downloads")
 QR_FOLDER.mkdir(exist_ok=True)
 
 # Function to open a custom input dialog
